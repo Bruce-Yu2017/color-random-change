@@ -1,59 +1,47 @@
-var randomColor = (int) => {
+let randomColor = (int) => {
   return Math.floor(Math.random() * 251);
 }
 
-var randomCell = (num) => {
+let randomCell = (num) => {
   return Math.floor(Math.random() * 17)
 }
 
-var queue = [];
-var arr = [];
-for(var i = 1; i <= 16; i++) {
+let queue = [];
+let arr = [];
+for(let i = 1; i <= 16; i++) {
   arr.push(i);
 }
-console.log("arr: ", arr)
 
-var changeColor = () => {
-  var r = randomColor(255);
-  var g = randomColor(255);
-  var b = randomColor(255);
+let changeColor = () => {
+  let r = randomColor(255);
+  let g = randomColor(255);
+  let b = randomColor(255);
   if(queue.length < 9) {
-    var randomIdx = Math.floor(Math.random() * arr.length);
-    // console.log('randomIdx: ', randomIdx);
+    let randomIdx = Math.floor(Math.random() * arr.length);
 
-    var selectedCellNum = arr[randomIdx];
-    // console.log('selectedCellNum: ', selectedCellNum);
+    let selectedCellNum = arr[randomIdx];
 
-    var selectedCell = document.getElementById(selectedCellNum.toString());
-    // console.log('selectedCell: ', selectedCell);
+    let selectedCell = document.getElementById(selectedCellNum.toString());
 
     selectedCell.style.backgroundColor = `rgb(${r},${g},${b})`;
     arr.splice(randomIdx, 1);
-    // console.log('arr: ', arr);
     queue.push(selectedCellNum);
-    // console.log('queue: ', queue);
   }
   else {
-    console.log("???")
-    var first = queue.shift();
+    let first = queue.shift();
     arr.push(first);
-    var randomIdx = Math.floor(Math.random() * arr.length);
-    // console.log('randomIdx: ', randomIdx);
+    randomIdx = Math.floor(Math.random() * arr.length);
 
-    var selectedCellNum = arr[randomIdx];
-    // console.log('selectedCellNum: ', selectedCellNum);
+    selectedCellNum = arr[randomIdx];
 
-    var selectedCell = document.getElementById(selectedCellNum.toString());
-    // console.log('selectedCell: ', selectedCell);
+    selectedCell = document.getElementById(selectedCellNum.toString());
 
     selectedCell.style.backgroundColor = `rgb(${r},${g},${b})`;
     arr.splice(randomIdx, 1);
-    // console.log('arr: ', arr);
     queue.push(selectedCellNum);
-    // console.log('queue: ', queue);
   }
 }
 
 
-setInterval(changeColor, 1000)
+setInterval(changeColor, 250)
 
